@@ -1,0 +1,30 @@
+# Entornos virtuales
+.venv/
+venv/
+env/
+
+# Archivos generados por Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Base de datos local y respaldos
+*.sqlite3
+*.db
+respaldos/
+
+# Credenciales y configuración sensible (nunca se sube al repositorio)
+.env
+*.env
+secrets.py
+config_local.py
+
+# Editores y sistema operativo
+.vscode/
+.idea/
+*.swp
+Thumbs.db
+.DS_Store
