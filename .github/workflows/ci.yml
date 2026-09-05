@@ -17,9 +17,8 @@ jobs:
       - name: Instalar dependencias
         run: |
           python -m pip install --upgrade pip
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          pip install pytest
       - name: Verificar que el código compila
-        run: |
-          if [ -d src ]; then python -m compileall src; fi
-      - name: Confirmar que el pipeline se ejecutó
-        run: echo "Pipeline ejecutado correctamente para el modulo de inventario."
+        run: python -m compileall src
+      - name: Ejecutar las pruebas automatizadas
+        run: python -m pytest -v
