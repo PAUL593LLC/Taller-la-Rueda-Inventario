@@ -96,4 +96,6 @@ source .venv/bin/activate        # En Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 python -m pytest
 ```
+feature/alerta-stock-minimo
 Módulo en construcción — Avance 2, Unidad  3.
+main
