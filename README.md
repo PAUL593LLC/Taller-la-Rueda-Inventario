@@ -12,7 +12,7 @@ Carrera de Tecnologías de la Información, Universidad Estatal Amazónica.
 | Grupo | Grupo 13 |
 | Integrantes | Edison Paul Llerena Cuzco |
 | Docente | Ing. Hermes Darío Sánchez Bermeo |
-| Stack | Python 3.11 + Django · SQLite en desarrollo · pytest · GitHub Actions |
+| Stack | Python 3.12 · SQLite · pytest · GitHub Actions |
 
 ## Qué hace el módulo
 
@@ -40,11 +40,10 @@ taller-la-rueda-inventario/
 │       ├── __init__.py
 │       ├── modelo.py         # Entidad Repuesto (capa de datos del dominio)
 │       ├── repositorio.py    # Patrón DAO: único punto de acceso a los datos
-│       └── servicio.py       # Capa de lógica de negocio: descuento de stock y alerta
+│       └── servicio.py       # Lógica de negocio: descuento de stock y alerta (patrón Observer)
 ├── tests/
-│   └── test_inventario.py    # Pruebas (se completan en los avances 3 y 4)
-├── docs/
-│   └── matriz_decision_tecnologica_U3.xlsx   # Evidencia del Avance 1
+│   └── test_inventario.py    # Pruebas de RF-09, RF-10 y RF-11 con pytest
+├── pytest.ini                # Configuración de pytest
 └── .github/
     └── workflows/
         └── ci.yml            # Pipeline de integración continua
@@ -84,9 +83,15 @@ git push origin feature/descuento-stock
 ## Integración continua
 
 El archivo `.github/workflows/ci.yml` define un pipeline que se ejecuta en cada `push` y en cada
-`pull request`. En este avance verifica que el proyecto se instale y que el código compile sin
-errores de sintaxis. En el Avance 4 (Semana 12) se agregará la ejecución automática de las
-pruebas con `pytest`.
+`pull request`. El pipeline instala las dependencias, verifica que el código compile y ejecuta
+las pruebas automatizadas con `pytest`. Un pull request solo se fusiona con `main` cuando el
+pipeline termina con el check verde.
+
+Las pruebas de `tests/test_inventario.py` comprueban:
+
+- **RF-09:** registro de un repuesto con todos sus datos, rechazo de código vacío y de código repetido.
+- **RF-10:** descuento correcto del stock y bloqueo cuando se piden más unidades de las disponibles.
+- **RF-11:** alerta cuando el repuesto llega a su cantidad mínima y ausencia de alerta cuando el stock es suficiente.
 
 ## Ejecución local
 
@@ -96,6 +101,3 @@ source .venv/bin/activate        # En Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 python -m pytest
 ```
-feature/alerta-stock-minimo
-Módulo en construcción — Avance 2, Unidad  3.
-main
